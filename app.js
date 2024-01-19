@@ -19,4 +19,8 @@ function primeNumbers(n) {
 
 // main
 
-primeNumbers(100); // Call the function
+function main() {
+  primeNumbers(100); // Call the function
+}
+
+main(); // Call main function
