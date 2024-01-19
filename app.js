@@ -25,4 +25,7 @@ function isPrime(n) {
 
 // main
 
-primeNumbers(100); // Call the function
+function main() {
+  console.log("Prime numbers from 0 to 100:");
+  primeNumbers(100);
+}
