@@ -1,8 +1,8 @@
 // create a function to list prime numbers from 0 to 100
 
-function primeNumbers() {
+function primeNumbers(n) {
   var primes = []; // Create an empty array to store prime numbers
-  for (var i = 2; i <= 100; i++) {
+  for (var i = 2; i <= n; i++) {
     var isPrime = true;
     for (var j = 2; j <= Math.sqrt(i); j++) {
       if (i % j === 0) {
@@ -19,4 +19,4 @@ function primeNumbers() {
 
 // main
 
-primeNumbers();
+primeNumbers(100); // Call the function
