@@ -36,11 +36,8 @@ jobs:
             echo "🪜 Merging ${current_branch} -> ${next_branch}"
             git checkout "${next_branch}"
             git merge "${current_branch}"
+            git add --all
+            git push origin "${next_branch}"
           else
             echo "✋ No next branch, doing nothing"
           fi
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_PAT}}
