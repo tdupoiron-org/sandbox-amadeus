@@ -1,3 +1,3 @@
 # sandbox-amadeus
 
-CHANGE ON MAIN
+HOTFIX MERGES IN RELEASE 1.1
