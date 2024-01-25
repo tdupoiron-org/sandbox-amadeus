@@ -1,0 +1,41 @@
+name: ⏩ Merge Forward
+on:
+  push:
+    branches:
+      - "release/*"
+
+permissions:
+  contents: write
+  
+jobs:
+  merge_forward:
+    name: ⏩ Merge Forward
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: "0"
+          
+      - name: 🪪 Set git name+email
+        run: |
+          git config user.name "Merge Forward"
+          git config user.email "nobody@example.com"
+          
+      - name: 🔍 Find next release branch
+        id: branches
+        run: ./.github/scripts/next-release-branch.sh
+        
+      - name: 🛣 Merge
+        run: |
+          current_branch="${{ steps.branches.outputs.current }}"
+          next_branch="${{ steps.branches.outputs.next }}"
+          if git branch -r --format "%(refname:short)" | grep "^origin/${next_branch}$"
+          then
+            echo "🪜 Merging ${current_branch} -> ${next_branch}"
+            git checkout "${next_branch}"
+            git merge "${current_branch}"
+            git push
+          else
+            echo "✋ No next branch, doing nothing"
+          fi
