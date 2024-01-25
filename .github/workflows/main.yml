@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: "0"
+          token: ${{ secrets.GH_PAT }}
           
       - name: 🪪 Set git name+email
         run: |
@@ -35,7 +36,11 @@ jobs:
             echo "🪜 Merging ${current_branch} -> ${next_branch}"
             git checkout "${next_branch}"
             git merge "${current_branch}"
-            git push
           else
             echo "✋ No next branch, doing nothing"
           fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_PAT}}
